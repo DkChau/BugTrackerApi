@@ -6,9 +6,10 @@ router.get('/',(req,res)=>{
     res.send('hi')
 })
 
-router.get('/bug',  )
+router.post('/project', apiController.createProject)
+// router.get('/bug', apiController.getBugs)
 router.post('/bug', apiController.createBug )
-router.put('/bug', )
-router.delete('/bug', )
+// router.put('/bug', )
+// router.delete('/bug', )
 
 module.exports = router

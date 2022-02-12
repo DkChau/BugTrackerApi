@@ -1,8 +1,9 @@
 var mysql = require('mysql')
+const { promisify } = require('util')
 
 require('dotenv').config();
 
-const con = mysql.createPool({
+const pool = mysql.createPool({
     connectionLimit : 100,
     host: process.env.HOST_KEY,
     user: process.env.USERNAME_KEY,
@@ -10,4 +11,5 @@ const con = mysql.createPool({
     database:process.env.DATABASE_KEY,
 });
 
-exports.con=con;
+pool.query = promisify(pool.query).bind(pool)
+module.exports = pool;
